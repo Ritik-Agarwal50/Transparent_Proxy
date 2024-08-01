@@ -5,7 +5,7 @@ import "lib/openzeppelin-contracts/contracts/proxy/utils/Initializable.sol";
 contract ImplementationV1 is Initializable {
     uint256 public number;
 
-    function Initialize() public initializer {
+    function initialize() public initializer {
         number = 1;
     }
 
