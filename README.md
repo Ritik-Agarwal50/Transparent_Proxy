@@ -1,4 +1,25 @@
-#### Deployed Address
-  Proxy deployed to: 0xb9cAACE3241935af85b63b5a66892AF45D02AA7A
-  ProxyAdmin deployed to: 0xA3C534Bb6Ac11ECAC3FA82B3cAC88f2892B76bf5
-  ProxyAdmin owner set to: 0xa76B88B26Ab5682B8559e7b9689B14Ef602fA08F
+ Proxy deployed at: 0xd0cE3b50e3022852e5f3562e0b4b7227d3531e2B
+  ProxyAdmin deployed at: 0xC76FAd274fA289758d24028E3cbdCE9B6441E6Cb
+
+
+  ##### sepolia
+✅  [Success]Hash: 0x050d43c9bf6ccbf1d5014d7e973e74a41a86eb35e71fc2c9b59a9267997961a1
+Contract Address: 0x5558cdF2feB098d26De8573445cd4440B1A30B6a
+Block: 6421692
+Paid: 0.025775008024547898 ETH (714114 gas * 36.093688157 gwei)
+
+
+##### sepolia
+✅  [Success]Hash: 0x1f80a44aa43d96e72e0ef56d04b5389da70561be8c8326c5ffefeb1e0ba3d536
+Contract Address: 0x18F375910495cb88DAdc19cC6e91E2f3293E2944
+Block: 6421692
+Paid: 0.005611738353585889 ETH (155477 gas * 36.093688157 gwei)
+
+
+##### sepolia
+✅  [Success]Hash: 0x476e73f13d9ff4dd2afb602345cdd1c316e2ac230bf76805db12f799b8dff8fd
+Contract Address: 0xb9cAACE3241935af85b63b5a66892AF45D02AA7A
+Block: 6421692
+Paid: 0.011268268974174615 ETH (312195 gas * 36.093688157 gwei)
+
+✅ Sequence #1 on sepolia | Total Paid: 0.042655015352308402 ETH (1181786 gas * avg 36.093688157 gwei)
