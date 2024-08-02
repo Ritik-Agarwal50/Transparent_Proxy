@@ -1,37 +1,42 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
+import "@openzeppelin/contracts/proxy/transparent/ProxyAdmin.sol";
+import "@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol";
+import "../src/CounterV1.sol";
+import "../src/CounterV2.sol";
 import "forge-std/Script.sol";
-import "lib/openzeppelin-contracts/contracts/proxy/transparent/ProxyAdmin.sol";
-import "lib/openzeppelin-contracts/contracts/proxy/transparent/TransparentUpgradeableProxy.sol";
-import "../src/MyContractV1.sol";
 
-contract DeployProxyScript is Script {
-    function run() public {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        address initialAddress = 0xa76B88B26Ab5682B8559e7b9689B14Ef602fA08F;
-        string memory sepoliaRpcUrl = vm.envString("SEPOLIA_RPC_URL");
-        vm.startBroadcast(deployerPrivateKey);
+contract DeployScript is Script {
+    function run() external {
+        vm.startBroadcast();
+        address deployer = vm.envAddress("DEPLOYER_ADDRESS");
+        // Deploy ProxyAdmin
+        ProxyAdmin proxyAdmin = new ProxyAdmin(deployer);
 
-        vm.setEnv("SEPOLIA_RPC_URL", sepoliaRpcUrl);
+        // Deploy CounterV1
+        address counterV1 = address(new CounterV1());
 
-        // Deploy the ProxyAdmin
-        ProxyAdmin proxyAdmin = new ProxyAdmin(initialAddress);
-
-        // Deploy the implementation contract (V1)
-        MyContractV1 myContractV1 = new MyContractV1();
-
-        // Deploy the TransparentUpgradeableProxy
+        // Deploy TransparentUpgradeableProxy
         TransparentUpgradeableProxy proxy = new TransparentUpgradeableProxy(
-            address(myContractV1),
+            counterV1,
             address(proxyAdmin),
-            abi.encodeWithSignature("initialize(uint256)", 42)
+            ""
         );
 
-        // Save the proxy and admin addresses for later use
-        console.log("Proxy deployed at:", address(proxy));
-        console.log("ProxyAdmin deployed at:", address(proxyAdmin));
+        // Deploy CounterV2
+        address counterV2 = address(new CounterV2());
 
+        // Encode data for initialization
+        bytes memory data = abi.encodeWithSignature("setValue(uint256)", 123);
+
+        // Upgrade Proxy and initialize CounterV2
+        proxyAdmin.upgradeAndCall{value: 0}(
+            ITransparentUpgradeableProxy(address(proxy)),
+            counterV2,
+            data
+        );
         vm.stopBroadcast();
     }
 }
+// Upgrade Proxy and initialize CounterV2
