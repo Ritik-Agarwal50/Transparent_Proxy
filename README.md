@@ -1,5 +1,5 @@
- Proxy deployed at: 0x5558cdF2feB098d26De8573445cd4440B1A30B6a
-  ProxyAdmin deployed at: 0xb9cAACE3241935af85b63b5a66892AF45D02AA7A
+ Proxy deployed at: 0xd0cE3b50e3022852e5f3562e0b4b7227d3531e2B
+  ProxyAdmin deployed at: 0xC76FAd274fA289758d24028E3cbdCE9B6441E6Cb
 
 
   ##### sepolia

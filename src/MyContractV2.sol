@@ -19,7 +19,8 @@ contract MyContractV2 is Initializable {
         return _value;
     }
 
-    function setNewValue(uint256 newValue) public {
+    // New initialization function
+    function initializeNewValue(uint256 newValue) public {
         _newValue = newValue;
     }
 
